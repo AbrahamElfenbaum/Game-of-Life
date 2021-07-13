@@ -242,6 +242,7 @@ namespace Game_of_Life
         {
             timer.Enabled = false;
             generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
