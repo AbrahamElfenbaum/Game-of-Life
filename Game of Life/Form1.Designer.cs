@@ -84,12 +84,6 @@ namespace Game_of_Life
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hUDToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.neighborCountToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toroidalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.finiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -178,13 +172,6 @@ namespace Game_of_Life
             // 
             // viewToolStripMenuItem
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hUDToolStripMenuItem1,
-            this.neighborCountToolStripMenuItem1,
-            this.gridToolStripMenuItem1,
-            this.toolStripSeparator7,
-            this.toroidalToolStripMenuItem,
-            this.finiteToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
@@ -527,41 +514,6 @@ namespace Game_of_Life
             this.nextToolStripMenuItem.Text = "Next";
             this.nextToolStripMenuItem.Click += new System.EventHandler(this.nextToolStripButton_Click);
             // 
-            // hUDToolStripMenuItem1
-            // 
-            this.hUDToolStripMenuItem1.Name = "hUDToolStripMenuItem1";
-            this.hUDToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.hUDToolStripMenuItem1.Text = "HUD";
-            // 
-            // neighborCountToolStripMenuItem1
-            // 
-            this.neighborCountToolStripMenuItem1.Name = "neighborCountToolStripMenuItem1";
-            this.neighborCountToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.neighborCountToolStripMenuItem1.Text = "Neighbor Count";
-            // 
-            // gridToolStripMenuItem1
-            // 
-            this.gridToolStripMenuItem1.Name = "gridToolStripMenuItem1";
-            this.gridToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.gridToolStripMenuItem1.Text = "Grid";
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
-            // 
-            // toroidalToolStripMenuItem
-            // 
-            this.toroidalToolStripMenuItem.Name = "toroidalToolStripMenuItem";
-            this.toroidalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.toroidalToolStripMenuItem.Text = "Toroidal";
-            // 
-            // finiteToolStripMenuItem
-            // 
-            this.finiteToolStripMenuItem.Name = "finiteToolStripMenuItem";
-            this.finiteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.finiteToolStripMenuItem.Text = "Finite";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -641,12 +593,6 @@ namespace Game_of_Life
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nextToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hUDToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem neighborCountToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem gridToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        private System.Windows.Forms.ToolStripMenuItem toroidalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem finiteToolStripMenuItem;
     }
 }
 
