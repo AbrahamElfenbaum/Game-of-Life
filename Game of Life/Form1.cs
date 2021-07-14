@@ -282,5 +282,11 @@ namespace Game_of_Life
                 graphicsPanel1.Invalidate();
             }
         }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OptionsWindow ow = new OptionsWindow();
+            ow.Show();
+        }
     }
 }
