@@ -276,7 +276,13 @@ namespace Game_of_Life
 
         private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ColorDialog dlg = new ColorDialog();
+            dlg.Color = cellColor;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                cellColor = dlg.Color;
+                graphicsPanel1.Invalidate();
+            }
         }
     }
 }
