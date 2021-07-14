@@ -207,6 +207,7 @@ namespace Game_of_Life
                     int xCheck = x + xOffset;
                     int yCheck = y + yOffset;
                     // if xOffset and yOffset are both equal to 0 then continue
+                    if ((xOffset == 0) && (yOffset == 0)) continue;
                     // if xCheck is less than 0 then set to xLen - 1
                     // if yCheck is less than 0 then set to yLen - 1
                     // if xCheck is greater than or equal too xLen then set to 0
