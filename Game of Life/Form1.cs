@@ -12,6 +12,8 @@ namespace Game_of_Life
 {
     public partial class Form1 : Form
     {
+        //Width and Height of the universe
+
         // The universe array
         bool[,] universe = new bool[5, 5];
         bool[,] scratchPad = new bool[5, 5];
@@ -285,8 +287,8 @@ namespace Game_of_Life
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OptionsWindow ow = new OptionsWindow();
-            ow.Show();
+            Options options = new Options();
+            options.Show();
         }
     }
 }
