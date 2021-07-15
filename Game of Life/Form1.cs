@@ -15,8 +15,6 @@ namespace Game_of_Life
         //Timer interval
         int interval = 100;
 
-        //Width and Height of the universe
-
         // The universe array
         bool[,] universe = new bool[30, 30];
         bool[,] scratchPad = new bool[30, 30];
@@ -36,7 +34,7 @@ namespace Game_of_Life
             InitializeComponent();
 
             // Setup the timer
-            timer.Interval = interval; // milliseconds
+            timer.Interval = 100; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
         }
@@ -296,13 +294,13 @@ namespace Game_of_Life
         {
             Options dlg = new Options();
 
-            dlg.Interval = interval;
+            dlg.Interval = timer.Interval;
             dlg.Width = universe.GetLength(0);
             dlg.Height = universe.GetLength(1);
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                interval = dlg.Interval;
+                timer.Interval = dlg.Interval;
                 universe = new bool[dlg.Width, dlg.Height];
                 scratchPad = new bool[dlg.Width, dlg.Height];
 
