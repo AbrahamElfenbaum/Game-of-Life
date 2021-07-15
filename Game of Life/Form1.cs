@@ -12,6 +12,9 @@ namespace Game_of_Life
 {
     public partial class Form1 : Form
     {
+        //Timer interval
+        int interval = 100;
+
         //Width and Height of the universe
 
         // The universe array
@@ -33,7 +36,7 @@ namespace Game_of_Life
             InitializeComponent();
 
             // Setup the timer
-            timer.Interval = 100; // milliseconds
+            timer.Interval = interval; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
         }
@@ -288,8 +291,17 @@ namespace Game_of_Life
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Options options = new Options();
-            options.Show();
+            Options dlg = new Options();
+            dlg.Show();
+
+            dlg.Interval = interval;
+
+            if(DialogResult.OK == dlg.ShowDialog())
+            {
+                interval = dlg.Interval;
+
+                graphicsPanel1.Invalidate();
+            }
         }
     }
 }
