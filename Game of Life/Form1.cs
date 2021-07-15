@@ -18,8 +18,8 @@ namespace Game_of_Life
         //Width and Height of the universe
 
         // The universe array
-        bool[,] universe = new bool[5, 5];
-        bool[,] scratchPad = new bool[5, 5];
+        bool[,] universe = new bool[30, 30];
+        bool[,] scratchPad = new bool[30, 30];
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -129,11 +129,14 @@ namespace Game_of_Life
 
                     neighbors = CountNeighborsFinite(x, y);
                     //Shows number of neighbors
-                    Font font = new Font("Arial", 20f);
-                    StringFormat sf = new StringFormat();
-                    sf.Alignment = StringAlignment.Center;
-                    sf.LineAlignment = StringAlignment.Center;
-                    e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, sf);
+                    if(neighbors > 0)
+                    {
+                        Font font = new Font("Arial", 8f);
+                        StringFormat sf = new StringFormat();
+                        sf.Alignment = StringAlignment.Center;
+                        sf.LineAlignment = StringAlignment.Center;
+                        e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, sf);
+                    }
 
                     // Outline the cell with a pen
                     e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
