@@ -301,9 +301,12 @@ namespace Game_of_Life
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 timer.Interval = dlg.Interval;
-                universe = new bool[dlg.Width, dlg.Height];
-                scratchPad = new bool[dlg.Width, dlg.Height];
-
+                if((dlg.Width != universe.GetLength(0)) || (dlg.Height != universe.GetLength(1)))
+                {
+                    universe = new bool[dlg.Width, dlg.Height];
+                    scratchPad = new bool[dlg.Width, dlg.Height];
+                }
+                
                 graphicsPanel1.Invalidate();
             }
         }
