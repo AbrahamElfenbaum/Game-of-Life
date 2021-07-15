@@ -292,13 +292,16 @@ namespace Game_of_Life
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Options dlg = new Options();
-            dlg.Show();
 
             dlg.Interval = interval;
+            dlg.Width = universe.GetLength(0);
+            dlg.Height = universe.GetLength(1);
 
-            if(DialogResult.OK == dlg.ShowDialog())
+            if (DialogResult.OK == dlg.ShowDialog())
             {
                 interval = dlg.Interval;
+                universe = new bool[dlg.Width, dlg.Height];
+                scratchPad = new bool[dlg.Width, dlg.Height];
 
                 graphicsPanel1.Invalidate();
             }
