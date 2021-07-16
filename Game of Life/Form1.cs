@@ -78,7 +78,7 @@ namespace Game_of_Life
             generations++;
 
             // Update status strip generations
-            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            toolStripStatusLabelGenerations.Text = "Generations: " + generations.ToString();
             graphicsPanel1.Invalidate();
         }
 
@@ -304,7 +304,7 @@ namespace Game_of_Life
                     universe = new bool[dlg.Width, dlg.Height];
                     scratchPad = new bool[dlg.Width, dlg.Height];
                 }
-                
+                toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
                 graphicsPanel1.Invalidate();
             }
         }
