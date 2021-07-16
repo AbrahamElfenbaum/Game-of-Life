@@ -12,8 +12,6 @@ namespace Game_of_Life
 {
     public partial class Form1 : Form
     {
-        //Timer interval
-        int interval = 100;
 
         // The universe array
         bool[,] universe = new bool[30, 30];
