@@ -250,7 +250,7 @@ namespace Game_of_Life
         {
             timer.Enabled = false;
             generations = 0;
-            toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+            toolStripStatusLabelGenerations.Text = "Generations: " + generations.ToString();
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
@@ -316,21 +316,29 @@ namespace Game_of_Life
 
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.Reset();
+            //timer.Interval = Properties.Settings.Default.Interval;
+            graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.Reload();
+            //timer.Interval = Properties.Settings.Default.Interval;
+            graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             //Updating Properties
+            //Properties.Settings.Default.Interval = timer.Interval;
             Properties.Settings.Default.BackgroundColor = graphicsPanel1.BackColor;
             Properties.Settings.Default.GridColor = gridColor;
             Properties.Settings.Default.CellColor = cellColor;
-            Properties.Settings.Default.Interval = timer.Interval;
             Properties.Settings.Default.Save();
         }
     }
