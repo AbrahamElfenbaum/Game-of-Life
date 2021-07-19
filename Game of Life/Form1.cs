@@ -314,6 +314,16 @@ namespace Game_of_Life
             }
         }
 
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             //Updating Properties
