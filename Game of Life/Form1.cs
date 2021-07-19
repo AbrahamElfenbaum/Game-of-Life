@@ -32,9 +32,12 @@ namespace Game_of_Life
             InitializeComponent();
 
             // Setup the timer
-            timer.Interval = 100; // milliseconds
+            timer.Interval = Properties.Settings.Default.Interval; // 100 milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
+
+            //Setup panel
+            graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
         }
 
         // Calculate the next generation of cells
