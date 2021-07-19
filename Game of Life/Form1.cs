@@ -18,8 +18,8 @@ namespace Game_of_Life
         bool[,] scratchPad = new bool[30, 30];
 
         // Drawing colors
-        Color gridColor = Color.Black;
-        Color cellColor = Color.Gray;
+        Color gridColor;// = Color.Black;
+        Color cellColor;// = Color.Gray;
 
         // The Timer class
         Timer timer = new Timer();
@@ -36,8 +36,10 @@ namespace Game_of_Life
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
 
-            //Setup panel
+            //Setup panel (Reading the Property)
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
+            gridColor = Properties.Settings.Default.GridColor;
+            cellColor = Properties.Settings.Default.CellColor;
         }
 
         // Calculate the next generation of cells
@@ -310,6 +312,16 @@ namespace Game_of_Life
                 toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
                 graphicsPanel1.Invalidate();
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Updating Properties
+            Properties.Settings.Default.BackgroundColor = graphicsPanel1.BackColor;
+            Properties.Settings.Default.GridColor = gridColor;
+            Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.Interval = timer.Interval;
+            Properties.Settings.Default.Save();
         }
     }
 }
