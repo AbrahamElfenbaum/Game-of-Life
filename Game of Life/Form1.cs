@@ -42,6 +42,7 @@ namespace Game_of_Life
             cellColor = Properties.Settings.Default.CellColor;
             universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             scratchPad = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
+            toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
         }
 
         // Calculate the next generation of cells
@@ -319,22 +320,28 @@ namespace Game_of_Life
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reset();
+            generations = 0;
             timer.Interval = Properties.Settings.Default.Interval;
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
+            toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
+            toolStripStatusLabelGenerations.Text = "Generations: " + generations.ToString();
             graphicsPanel1.Invalidate();
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
+            generations = 0;
             timer.Interval = Properties.Settings.Default.Interval;
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
+            toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
+            toolStripStatusLabelGenerations.Text = "Generations: " + generations.ToString();
             graphicsPanel1.Invalidate();
         }
 
