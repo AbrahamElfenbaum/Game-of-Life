@@ -14,8 +14,8 @@ namespace Game_of_Life
     {
 
         // The universe array
-        bool[,] universe = new bool[30, 30];
-        bool[,] scratchPad = new bool[30, 30];
+        bool[,] universe;// = new bool[30, 30];
+        bool[,] scratchPad;// = new bool[30, 30];
 
         // Drawing colors
         Color gridColor;// = Color.Black;
@@ -32,7 +32,7 @@ namespace Game_of_Life
             InitializeComponent();
 
             // Setup the timer
-            timer.Interval = Properties.Settings.Default.Interval; // 100 milliseconds
+            timer.Interval = 100; // 100 milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
 
@@ -40,6 +40,8 @@ namespace Game_of_Life
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
+            universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
+            scratchPad = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
         }
 
         // Calculate the next generation of cells
@@ -321,6 +323,8 @@ namespace Game_of_Life
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
+            width = Properties.Settings.Default.Width;
+            universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -330,6 +334,7 @@ namespace Game_of_Life
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
+            universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -339,6 +344,8 @@ namespace Game_of_Life
             Properties.Settings.Default.BackgroundColor = graphicsPanel1.BackColor;
             Properties.Settings.Default.GridColor = gridColor;
             Properties.Settings.Default.CellColor = cellColor;
+            Properties.Settings.Default.Width = universe.GetLength(0);
+            Properties.Settings.Default.Height = universe.GetLength(1);
             Properties.Settings.Default.Save();
         }
     }
