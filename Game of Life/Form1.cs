@@ -28,11 +28,6 @@ namespace Game_of_Life
         // Generation count
         int generations = 0;
 
-        //Visibility Bools
-        bool isHUDVisible = true;
-        bool isNeighborCountVisible = true;
-        bool isGridVisible = true;
-
         //Seed Value
         int seed = 0;
 
@@ -232,9 +227,13 @@ namespace Game_of_Life
                     // if xOffset and yOffset are both equal to 0 then continue
                     if ((xOffset == 0) && (yOffset == 0)) continue;
                     // if xCheck is less than 0 then set to xLen - 1
+                    if (xCheck < 0) xCheck = xLen - 1;
                     // if yCheck is less than 0 then set to yLen - 1
+                    if (yCheck < 0) yCheck = yLen - 1;
                     // if xCheck is greater than or equal too xLen then set to 0
+                    if (xCheck >= 0) xCheck = 0;
                     // if yCheck is greater than or equal too yLen then set to 0
+                    if (yCheck >= 0) yCheck = 0;
 
                     if (universe[xCheck, yCheck] == true) count++;
                 }
@@ -531,6 +530,22 @@ namespace Game_of_Life
                 // Close the file.
                 reader.Close();
                 graphicsPanel1.Invalidate();
+            }
+        }
+
+        private void finiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(finiteToolStripMenuItem.Checked == true)
+            {
+                toroidalToolStripMenuItem.Checked = false;
+            }
+        }
+
+        private void toroidalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (toroidalToolStripMenuItem.Checked == true)
+            {
+                finiteToolStripMenuItem.Checked = false;
             }
         }
     }
