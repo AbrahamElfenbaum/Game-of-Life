@@ -16,5 +16,11 @@ namespace Game_of_Life
         {
             InitializeComponent();
         }
+
+        public int SeedValue
+        {
+            get { return (int)numericUpDownSeed.Value; }
+            set { numericUpDownSeed.Value = value; }
+        }
     }
 }

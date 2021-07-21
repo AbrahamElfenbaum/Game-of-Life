@@ -32,6 +32,9 @@ namespace Game_of_Life
         bool isNeighborCountVisible = true;
         bool isGridVisible = true;
 
+        //Seed Value
+        int seed = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -385,12 +388,40 @@ namespace Game_of_Life
 
         private void fromTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Random rng = new Random();
 
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if (rng.Next(0, 3) == 0) universe[x, y] = true;
+                    else universe[x, y] = false;
+                }
+            }
+            graphicsPanel1.Invalidate();
         }
 
         private void fromSeedToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Seed dlg = new Seed();
+            dlg.SeedValue = seed;
 
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                seed = dlg.SeedValue;
+            }
+
+            Random rng = new Random(seed);
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if (rng.Next(0, 3) == 0) universe[x, y] = true;
+                    else universe[x, y] = false;
+                }
+            }
+            graphicsPanel1.Invalidate();
         }
     }
 }
