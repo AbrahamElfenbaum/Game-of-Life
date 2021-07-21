@@ -45,6 +45,25 @@ namespace Game_of_Life
             toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
         }
 
+
+        //EXAMPLE
+        /*
+        private void Randomize()
+        {
+            Random rng = new Random(); // Time
+           
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if random number == 0, cell is alive, otherwise, cell is dead.
+                }
+            }
+        }
+        */
+
         // Calculate the next generation of cells
         private void NextGeneration()
         {
