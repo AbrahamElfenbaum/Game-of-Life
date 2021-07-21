@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,7 +57,7 @@ namespace Game_of_Life
         // Calculate the next generation of cells
         private void NextGeneration()
         {
-            
+
             int neighbors;
             // Iterate through the universe in the y, top to bottom
             for (int y = 0; y < universe.GetLength(1); y++)
@@ -86,7 +87,7 @@ namespace Game_of_Life
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++) 
+                for (int x = 0; x < universe.GetLength(0); x++)
                     scratchPad[x, y] = false;
             }
 
@@ -141,7 +142,7 @@ namespace Game_of_Life
 
                     neighbors = CountNeighborsFinite(x, y);
                     //Shows number of neighbors
-                    if(neighborCountToolStripMenuItem1.Checked == true && neighbors > 0)
+                    if (neighborCountToolStripMenuItem1.Checked == true && neighbors > 0)
                     {
                         Font font = new Font("Arial", 8f);
                         StringFormat sf = new StringFormat();
@@ -151,11 +152,11 @@ namespace Game_of_Life
                     }
 
                     // Outline the cell with a pen
-                    if(gridToolStripMenuItem1.Checked == true)
+                    if (gridToolStripMenuItem1.Checked == true)
                     {
                         e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
                     }
-                    
+
                 }
             }
 
@@ -279,7 +280,7 @@ namespace Game_of_Life
         {
             ColorDialog dlg = new ColorDialog();
             dlg.Color = graphicsPanel1.BackColor;
-            if(DialogResult.OK == dlg.ShowDialog())
+            if (DialogResult.OK == dlg.ShowDialog())
             {
                 graphicsPanel1.BackColor = dlg.Color;
                 graphicsPanel1.Invalidate();
@@ -319,7 +320,7 @@ namespace Game_of_Life
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 timer.Interval = dlg.Interval;
-                if((dlg.Width != universe.GetLength(0)) || (dlg.Height != universe.GetLength(1)))
+                if ((dlg.Width != universe.GetLength(0)) || (dlg.Height != universe.GetLength(1)))
                 {
                     universe = new bool[dlg.Width, dlg.Height];
                     scratchPad = new bool[dlg.Width, dlg.Height];
@@ -369,24 +370,6 @@ namespace Game_of_Life
             Properties.Settings.Default.Save();
         }
 
-        //EXAMPLE
-        /*
-        private void Randomize()
-        {
-            Random rng = new Random(); // Time
-           
-
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++)
-                {
-                    if random number == 0, cell is alive, otherwise, cell is dead.
-                }
-            }
-        }
-        */
-
         private void fromTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Random rng = new Random();
@@ -410,16 +393,15 @@ namespace Game_of_Life
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 seed = dlg.SeedValue;
-            }
+                Random rng = new Random(seed);
 
-            Random rng = new Random(seed);
-
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                for (int x = 0; x < universe.GetLength(0); x++)
+                for (int y = 0; y < universe.GetLength(1); y++)
                 {
-                    if (rng.Next(0, 3) == 0) universe[x, y] = true;
-                    else universe[x, y] = false;
+                    for (int x = 0; x < universe.GetLength(0); x++)
+                    {
+                        if (rng.Next(0, 3) == 0) universe[x, y] = true;
+                        else universe[x, y] = false;
+                    }
                 }
             }
             graphicsPanel1.Invalidate();
@@ -433,6 +415,51 @@ namespace Game_of_Life
         private void gridToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             graphicsPanel1.Invalidate();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "All Files|*.*|Cells|*.cells";
+            dlg.FilterIndex = 2; dlg.DefaultExt = "cells";
+
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                StreamWriter writer = new StreamWriter(dlg.FileName);
+
+                // Write any comments you want to include first.
+                // Prefix all comment strings with an exclamation point.
+                // Use WriteLine to write the strings to the file. 
+                // It appends a CRLF for you.
+                writer.WriteLine("!This is my comment.");
+
+                // Iterate through the universe one row at a time.
+                for (int y = 0; y < universe.GetLength(1); y++)
+                {
+                    // Create a string to represent the current row.
+                    String currentRow = string.Empty;
+
+                    // Iterate through the current row one cell at a time.
+                    for (int x = 0; x < universe.GetLength(0); x++)
+                    {
+                        // If the universe[x,y] is alive then append 'O' (capital O)
+                        // to the row string.
+                        if (universe[x, y] == true) currentRow += 'O';
+                        // Else if the universe[x,y] is dead then append '.' (period)
+                        // to the row string.
+                        else currentRow += '.';
+                    }
+
+                    // Once the current row has been read through and the 
+                    // string constructed then write it to the file using WriteLine.
+                    writer.WriteLine(currentRow);
+                }
+
+                // After all rows and columns have been written then close the file.
+                writer.Close();
+            }
+
         }
     }
 }
