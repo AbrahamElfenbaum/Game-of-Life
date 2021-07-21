@@ -60,8 +60,10 @@ namespace Game_of_Life
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    //int count = CountNeighbor
-                    neighbors = CountNeighborsFinite(x, y);
+                    if (finiteToolStripMenuItem.Checked == true)
+                        neighbors = CountNeighborsFinite(x, y);
+                    else
+                        neighbors = CountNeighborsToroidal(x, y);
 
                     //apply rules to see if the cell should live or die in the next gen
                     if (universe[x, y] == true && neighbors < 2)
@@ -135,7 +137,11 @@ namespace Game_of_Life
                         e.Graphics.FillRectangle(cellBrush, cellRect);
                     }
 
-                    neighbors = CountNeighborsFinite(x, y);
+                    if (finiteToolStripMenuItem.Checked == true)
+                        neighbors = CountNeighborsFinite(x, y);
+                    else 
+                        neighbors = CountNeighborsToroidal(x, y);
+
                     //Shows number of neighbors
                     if (neighborCountToolStripMenuItem1.Checked == true && neighbors > 0)
                     {
@@ -231,9 +237,9 @@ namespace Game_of_Life
                     // if yCheck is less than 0 then set to yLen - 1
                     if (yCheck < 0) yCheck = yLen - 1;
                     // if xCheck is greater than or equal too xLen then set to 0
-                    if (xCheck >= 0) xCheck = 0;
+                    if (xCheck >= xLen) xCheck = 0;
                     // if yCheck is greater than or equal too yLen then set to 0
-                    if (yCheck >= 0) yCheck = 0;
+                    if (yCheck >= yLen) yCheck = 0;
 
                     if (universe[xCheck, yCheck] == true) count++;
                 }
