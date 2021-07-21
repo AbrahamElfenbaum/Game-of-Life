@@ -27,6 +27,11 @@ namespace Game_of_Life
         // Generation count
         int generations = 0;
 
+        //Visibility Bools
+        bool isHUDVisible = true;
+        bool isNeighborCountVisible = true;
+        bool isGridVisible = true;
+
         public Form1()
         {
             InitializeComponent();
@@ -44,25 +49,6 @@ namespace Game_of_Life
             scratchPad = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
         }
-
-
-        //EXAMPLE
-        /*
-        private void Randomize()
-        {
-            Random rng = new Random(); // Time
-           
-
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++)
-                {
-                    if random number == 0, cell is alive, otherwise, cell is dead.
-                }
-            }
-        }
-        */
 
         // Calculate the next generation of cells
         private void NextGeneration()
@@ -374,6 +360,34 @@ namespace Game_of_Life
             Properties.Settings.Default.Width = universe.GetLength(0);
             Properties.Settings.Default.Height = universe.GetLength(1);
             Properties.Settings.Default.Save();
+        }
+
+        //EXAMPLE
+        /*
+        private void Randomize()
+        {
+            Random rng = new Random(); // Time
+           
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if random number == 0, cell is alive, otherwise, cell is dead.
+                }
+            }
+        }
+        */
+
+        private void fromTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fromSeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
