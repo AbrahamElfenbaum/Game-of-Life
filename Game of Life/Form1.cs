@@ -138,7 +138,7 @@ namespace Game_of_Life
 
                     neighbors = CountNeighborsFinite(x, y);
                     //Shows number of neighbors
-                    if(neighbors > 0)
+                    if(isNeighborCountVisible && neighbors > 0)
                     {
                         Font font = new Font("Arial", 8f);
                         StringFormat sf = new StringFormat();
@@ -148,7 +148,10 @@ namespace Game_of_Life
                     }
 
                     // Outline the cell with a pen
-                    e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    if(isGridVisible)
+                    {
+                        e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    }
                 }
             }
 
