@@ -141,7 +141,7 @@ namespace Game_of_Life
 
                     neighbors = CountNeighborsFinite(x, y);
                     //Shows number of neighbors
-                    if(isNeighborCountVisible && neighbors > 0)
+                    if(neighborCountToolStripMenuItem1.Checked == true && neighbors > 0)
                     {
                         Font font = new Font("Arial", 8f);
                         StringFormat sf = new StringFormat();
@@ -151,10 +151,11 @@ namespace Game_of_Life
                     }
 
                     // Outline the cell with a pen
-                    if(isGridVisible)
+                    if(gridToolStripMenuItem1.Checked == true)
                     {
                         e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
                     }
+                    
                 }
             }
 
@@ -368,6 +369,24 @@ namespace Game_of_Life
             Properties.Settings.Default.Save();
         }
 
+        //EXAMPLE
+        /*
+        private void Randomize()
+        {
+            Random rng = new Random(); // Time
+           
+
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if random number == 0, cell is alive, otherwise, cell is dead.
+                }
+            }
+        }
+        */
+
         private void fromTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Random rng = new Random();
@@ -388,7 +407,10 @@ namespace Game_of_Life
             Seed dlg = new Seed();
             dlg.SeedValue = seed;
 
-            if (DialogResult.OK == dlg.ShowDialog()) seed = dlg.SeedValue;
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                seed = dlg.SeedValue;
+            }
 
             Random rng = new Random(seed);
 
@@ -400,6 +422,16 @@ namespace Game_of_Life
                     else universe[x, y] = false;
                 }
             }
+            graphicsPanel1.Invalidate();
+        }
+
+        private void neighborCountToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            graphicsPanel1.Invalidate();
+        }
+
+        private void gridToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
             graphicsPanel1.Invalidate();
         }
     }
