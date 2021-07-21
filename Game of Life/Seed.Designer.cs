@@ -58,7 +58,10 @@ namespace Game_of_Life
             this.Controls.Add(this.labelSeed);
             this.Controls.Add(this.numericUpDownSeed);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Seed";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seed";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSeed)).EndInit();
             this.ResumeLayout(false);
