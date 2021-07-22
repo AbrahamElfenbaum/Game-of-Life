@@ -162,8 +162,6 @@ namespace Game_of_Life
                     {
                         e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
                     }
-
-                    
                 }
             }
 
@@ -173,7 +171,7 @@ namespace Game_of_Life
                 StringFormat stringFormat = new StringFormat();
                 stringFormat.Alignment = StringAlignment.Near;
                 stringFormat.LineAlignment = StringAlignment.Far;
-                e.Graphics.DrawString(HUDDisplay(), font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
+                e.Graphics.DrawString(HUDDisplayText(), font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
             }
 
             // Cleaning up pens and brushes
@@ -278,8 +276,8 @@ namespace Game_of_Life
             return count;
         }
 
-        //Displays the HUD
-        private string HUDDisplay()
+        //Text for the HUD Display
+        private string HUDDisplayText()
         {
             string hud;
            
@@ -492,20 +490,60 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
-        //Invalidates the Grapics Panel
-        private void neighborCountToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            graphicsPanel1.Invalidate();
-        }
-
-        //Invalidates the Grapics Panel
-        private void gridToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            graphicsPanel1.Invalidate();
-        }
-
+        //Invalidates the Grapics Panel and Checks or Unchecks the HUD Context Menu Strip
         private void hUDToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (hUDToolStripMenuItem1.Checked == true)
+                hUDToolStripMenuItem.Checked = true;
+            else
+                hUDToolStripMenuItem.Checked = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        private void hUDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (hUDToolStripMenuItem.Checked == true)
+                hUDToolStripMenuItem1.Checked = true;
+            else
+                hUDToolStripMenuItem1.Checked = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        //Invalidates the Grapics Panel and Checks or Unchecks the Neighbor Context Menu Strip
+        private void neighborCountToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (neighborCountToolStripMenuItem1.Checked == true)
+                neighborCountToolStripMenuItem.Checked = true;
+            else
+                neighborCountToolStripMenuItem.Checked = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        private void neighborCountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (neighborCountToolStripMenuItem.Checked == true)
+                neighborCountToolStripMenuItem1.Checked = true;
+            else
+                neighborCountToolStripMenuItem1.Checked = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        //Invalidates the Grapics Panel and Checks or Unchecks the Grid Context Menu Strip
+        private void gridToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (gridToolStripMenuItem1.Checked == true)
+                gridToolStripMenuItem.Checked = true;
+            else
+                gridToolStripMenuItem.Checked = false;
+            graphicsPanel1.Invalidate();
+        }
+
+        private void gridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (gridToolStripMenuItem.Checked == true)
+                gridToolStripMenuItem1.Checked = true;
+            else
+                gridToolStripMenuItem1.Checked = false;
             graphicsPanel1.Invalidate();
         }
 
@@ -648,6 +686,6 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
-        
+       
     }
 }
