@@ -47,6 +47,7 @@ namespace Game_of_Life
             universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             scratchPad = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
+            
         }
 
         // Calculate the next generation of cells
@@ -102,6 +103,7 @@ namespace Game_of_Life
             NextGeneration();
         }
 
+        //Draws the Universe
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
             // Calculate the width and height of each cell in pixels
@@ -166,6 +168,7 @@ namespace Game_of_Life
             cellBrush.Dispose();
         }
 
+        //Allows the User to Click Cells to Make Them Alive or Dead
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             // If the left mouse button was clicked
