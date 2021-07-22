@@ -247,26 +247,31 @@ namespace Game_of_Life
             return count;
         }
 
+        //Close the Program
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Starts the Timer
         private void startToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = true;
         }
 
+        //Stops the timer
         private void pauseToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
         }
 
+        //Iterates One Generation
         private void nextToolStripButton_Click(object sender, EventArgs e)
         {
             NextGeneration();
         }
 
+        //Clears the Universe
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
@@ -281,6 +286,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Sets the Background Color
         private void backColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -292,6 +298,7 @@ namespace Game_of_Life
             }
         }
 
+        //Sets the Grid Color
         private void gridColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -303,6 +310,7 @@ namespace Game_of_Life
             }
         }
 
+        //Sets the Alive Cell Color
         private void cellColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -314,6 +322,8 @@ namespace Game_of_Life
             }
         }
 
+        //Opens the Option Window, Allowing the User to Change the
+        //Time Interval, and the Width and Height of the Universe
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Options dlg = new Options();
@@ -335,6 +345,7 @@ namespace Game_of_Life
             }
         }
 
+        //Sets All Colors, Time Interval, Width and Height to their Default Values
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reset();
@@ -349,6 +360,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Reloads the Settings the User Had for All Colors, Time Interval, Width and Height
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
@@ -363,6 +375,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Saves the Values of the Colors, Time Interval, Width and Height When the Program is Closed
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             //Updating Properties
@@ -375,6 +388,7 @@ namespace Game_of_Life
             Properties.Settings.Default.Save();
         }
 
+        //Randomly Generates a Universe From Random Time
         private void fromTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Random rng = new Random();
@@ -390,6 +404,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Randomly Generates a Universe From a Seed Chosen By the User
         private void fromSeedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Seed dlg = new Seed();
@@ -412,16 +427,19 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Invalidates the Grapics Panel
         private void neighborCountToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             graphicsPanel1.Invalidate();
         }
 
+        //Invalidates the Grapics Panel
         private void gridToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             graphicsPanel1.Invalidate();
         }
 
+        //Saves the Layout of the Universe to a new File Named by the User
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog dlg = new SaveFileDialog();
@@ -467,6 +485,7 @@ namespace Game_of_Life
 
         }
 
+        //Opens a File and Reads in the Cell Values
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -539,6 +558,7 @@ namespace Game_of_Life
             }
         }
 
+        //Turns Off the Toroidal Check if the Finite Check is Clicked
         private void finiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(finiteToolStripMenuItem.Checked == true)
@@ -547,6 +567,7 @@ namespace Game_of_Life
             }
         }
 
+        //Turns Off the Finite Check if the Toroidal Check is Clicked
         private void toroidalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (toroidalToolStripMenuItem.Checked == true)
