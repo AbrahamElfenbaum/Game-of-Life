@@ -500,6 +500,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Invalidates the Grapics Panel and Checks or Unchecks the HUD Menu Strip
         private void hUDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (hUDToolStripMenuItem.Checked == true)
@@ -509,7 +510,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
-        //Invalidates the Grapics Panel and Checks or Unchecks the Neighbor Context Menu Strip
+        //Invalidates the Grapics Panel and Checks or Unchecks the Neighbor Count Context Menu Strip
         private void neighborCountToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (neighborCountToolStripMenuItem1.Checked == true)
@@ -519,6 +520,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Invalidates the Grapics Panel and Checks or Unchecks the Neighbor Count Menu Strip
         private void neighborCountToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (neighborCountToolStripMenuItem.Checked == true)
@@ -538,6 +540,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        //Invalidates the Grapics Panel and Checks or Unchecks the Grid Menu Strip
         private void gridToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (gridToolStripMenuItem.Checked == true)
@@ -685,7 +688,5 @@ namespace Game_of_Life
             }
             graphicsPanel1.Invalidate();
         }
-
-       
     }
 }
