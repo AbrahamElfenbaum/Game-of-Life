@@ -371,14 +371,17 @@ namespace Game_of_Life
         private void resetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reset();
+            timer.Enabled = false;
             generations = 0;
             timer.Interval = Properties.Settings.Default.Interval;
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
+            scratchPad = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
             toolStripStatusLabelGenerations.Text = "Generations: " + generations.ToString();
+            toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
             graphicsPanel1.Invalidate();
         }
 
@@ -386,14 +389,17 @@ namespace Game_of_Life
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Reload();
+            timer.Enabled = false;
             generations = 0;
             timer.Interval = Properties.Settings.Default.Interval;
             graphicsPanel1.BackColor = Properties.Settings.Default.BackgroundColor;
             gridColor = Properties.Settings.Default.GridColor;
             cellColor = Properties.Settings.Default.CellColor;
             universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
+            scratchPad = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
             toolStripStatusLabelGenerations.Text = "Generations: " + generations.ToString();
+            toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
             graphicsPanel1.Invalidate();
         }
 
@@ -474,12 +480,11 @@ namespace Game_of_Life
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 StreamWriter writer = new StreamWriter(dlg.FileName);
-
                 // Write any comments you want to include first.
                 // Prefix all comment strings with an exclamation point.
                 // Use WriteLine to write the strings to the file. 
                 // It appends a CRLF for you.
-                writer.WriteLine("!This is my comment.");
+                writer.WriteLine("!Created: " + DateTime.Now);
 
                 // Iterate through the universe one row at a time.
                 for (int y = 0; y < universe.GetLength(1); y++)
