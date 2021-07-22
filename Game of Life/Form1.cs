@@ -47,6 +47,7 @@ namespace Game_of_Life
             universe = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             scratchPad = new bool[Properties.Settings.Default.Width, Properties.Settings.Default.Height];
             toolStripStatusLabelInverval.Text = "Interval: " + timer.Interval;
+            toolStripStatusLabelAlive.Text = "Alive: 0";
             
         }
 
@@ -77,6 +78,7 @@ namespace Game_of_Life
                         scratchPad[x, y] = true;
                 }
             }
+
             //copy from scratchPad to universe
             bool[,] temp = universe;
             universe = scratchPad;
@@ -92,8 +94,9 @@ namespace Game_of_Life
             // Increment generation count
             generations++;
 
-            // Update status strip generations
+            // Update status strip generations and alive
             toolStripStatusLabelGenerations.Text = "Generations: " + generations.ToString();
+            toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
             graphicsPanel1.Invalidate();
         }
 
@@ -188,6 +191,7 @@ namespace Game_of_Life
                 universe[(int)x, (int)y] = !universe[(int)x, (int)y];
 
                 // Tell Windows you need to repaint
+                toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
                 graphicsPanel1.Invalidate();
             }
         }
@@ -251,19 +255,16 @@ namespace Game_of_Life
         }
 
         //Counts the Number of Alive Cells
-        private int AliveCellCount(int x, int y)
+        private int AliveCellCount()
         {
             int count = 0;
-            int xLen = universe.GetLength(0);
-            int yLen = universe.GetLength(1);
-            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            for (int y = 0; y < universe.GetLength(1); y++)
             {
-                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                for (int x = 0; x < universe.GetLength(0); x++)
                 {
                     if (universe[x, y] == true) count++;
                 }
             }
-
             return count;
         }
 
@@ -279,7 +280,7 @@ namespace Game_of_Life
             timer.Enabled = true;
         }
 
-        //Stops the timer
+        //Stops the Timer
         private void pauseToolStripButton_Click(object sender, EventArgs e)
         {
             timer.Enabled = false;
@@ -303,6 +304,7 @@ namespace Game_of_Life
                 for (int x = 0; x < universe.GetLength(0); x++)
                     universe[x, y] = false;
             }
+            toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
             graphicsPanel1.Invalidate();
         }
 
@@ -421,6 +423,7 @@ namespace Game_of_Life
                     else universe[x, y] = false;
                 }
             }
+            toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
             graphicsPanel1.Invalidate();
         }
 
@@ -444,6 +447,7 @@ namespace Game_of_Life
                     }
                 }
             }
+            toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
             graphicsPanel1.Invalidate();
         }
 
@@ -574,6 +578,7 @@ namespace Game_of_Life
                 }
                 // Close the file.
                 reader.Close();
+                toolStripStatusLabelAlive.Text = "Alive: " + AliveCellCount();
                 graphicsPanel1.Invalidate();
             }
         }
