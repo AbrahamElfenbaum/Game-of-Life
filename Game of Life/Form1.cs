@@ -150,7 +150,7 @@ namespace Game_of_Life
                     //Shows number of neighbors
                     if (neighborCountToolStripMenuItem1.Checked == true && neighbors > 0)
                     {
-                        Font font = new Font("Arial", 8f);
+                        Font font = new Font("Arial", cellRect.Height* 0.5f);
                         StringFormat sf = new StringFormat();
                         sf.Alignment = StringAlignment.Center;
                         sf.LineAlignment = StringAlignment.Center;
@@ -163,7 +163,17 @@ namespace Game_of_Life
                         e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
                     }
 
+                    
                 }
+            }
+
+            if (hUDToolStripMenuItem1.Checked == true)
+            {
+                Font font = new Font("Arial", graphicsPanel1.ClientRectangle.Height * 0.02f);
+                StringFormat stringFormat = new StringFormat();
+                stringFormat.Alignment = StringAlignment.Near;
+                stringFormat.LineAlignment = StringAlignment.Far;
+                e.Graphics.DrawString(HUDDisplay(), font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
             }
 
             // Cleaning up pens and brushes
@@ -266,6 +276,31 @@ namespace Game_of_Life
                 }
             }
             return count;
+        }
+
+        //Displays the HUD
+        private string HUDDisplay()
+        {
+            string hud;
+           
+            if (finiteToolStripMenuItem.Checked == true)
+            {
+                hud =  $"Generation: {toolStripStatusLabelGenerations.Text}\n" +
+                       $"Cell Count: {AliveCellCount()}\n" +
+                       $"Boundry Type: Finite\n" +
+                       $"Universe Width: {universe.GetLength(0)}\n" +
+                       $"Universe Width: {universe.GetLength(1)}";
+            }
+            else
+            {
+                hud =  $"Generation: {toolStripStatusLabelGenerations.Text}\n" +
+                       $"Cell Count: {AliveCellCount()}\n" +
+                       $"Boundry Type: Toroidal\n" +
+                       $"Universe Width: {universe.GetLength(0)}\n" +
+                       $"Universe Width: {universe.GetLength(1)}";
+            }
+
+            return hud;
         }
 
         //Close the Program
@@ -469,6 +504,11 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        private void hUDToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            graphicsPanel1.Invalidate();
+        }
+
         //Saves the Layout of the Universe to a new File Named by the User
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -595,6 +635,7 @@ namespace Game_of_Life
             {
                 toroidalToolStripMenuItem.Checked = false;
             }
+            graphicsPanel1.Invalidate();
         }
 
         //Turns Off the Finite Check if the Toroidal Check is Clicked
@@ -604,6 +645,9 @@ namespace Game_of_Life
             {
                 finiteToolStripMenuItem.Checked = false;
             }
+            graphicsPanel1.Invalidate();
         }
+
+        
     }
 }
