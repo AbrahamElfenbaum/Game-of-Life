@@ -250,6 +250,23 @@ namespace Game_of_Life
             return count;
         }
 
+        //Counts the Number of Alive Cells
+        private int AliveCellCount(int x, int y)
+        {
+            int count = 0;
+            int xLen = universe.GetLength(0);
+            int yLen = universe.GetLength(1);
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                {
+                    if (universe[x, y] == true) count++;
+                }
+            }
+
+            return count;
+        }
+
         //Close the Program
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
