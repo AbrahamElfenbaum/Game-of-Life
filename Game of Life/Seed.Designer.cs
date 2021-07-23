@@ -39,6 +39,11 @@ namespace Game_of_Life
             // numericUpDownSeed
             // 
             this.numericUpDownSeed.Location = new System.Drawing.Point(110, 60);
+            this.numericUpDownSeed.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
             this.numericUpDownSeed.Name = "numericUpDownSeed";
             this.numericUpDownSeed.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownSeed.TabIndex = 0;

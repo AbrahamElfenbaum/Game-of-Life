@@ -65,23 +65,58 @@ namespace Game_of_Life
             // numericUpDownInterval
             // 
             this.numericUpDownInterval.Location = new System.Drawing.Point(258, 63);
+            this.numericUpDownInterval.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownInterval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownInterval.Name = "numericUpDownInterval";
             this.numericUpDownInterval.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownInterval.TabIndex = 2;
+            this.numericUpDownInterval.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // numericUpDownHeight
             // 
             this.numericUpDownHeight.Location = new System.Drawing.Point(258, 89);
+            this.numericUpDownHeight.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numericUpDownHeight.Name = "numericUpDownHeight";
             this.numericUpDownHeight.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownHeight.TabIndex = 3;
+            this.numericUpDownHeight.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // numericUpDownWidth
             // 
             this.numericUpDownWidth.Location = new System.Drawing.Point(258, 116);
+            this.numericUpDownWidth.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numericUpDownWidth.Name = "numericUpDownWidth";
             this.numericUpDownWidth.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownWidth.TabIndex = 4;
+            this.numericUpDownWidth.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
