@@ -427,7 +427,6 @@ namespace Game_of_Life
                     // Read one row at a time.
                     string row = reader.ReadLine();
 
-
                     // If the row begins with '!' then
                     // it is a comment and should be ignored.
                     if (row[0] == '!') continue;
